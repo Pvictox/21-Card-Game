@@ -105,9 +105,76 @@ while main:
                 print('Selecione um opção válida\n')
                 sleep(2)
     elif op == 2:
+        while flag:
             os.system('cls')
             print('Modo vs Computador selecionado.\n1 - Jogar\n2 - Voltar')
-            sleep(2)
+            op = int(input())
+            if op == 1:
+                os.system('cls')
+                mao = 0
+                maoPC = 0
+                soma = 0
+                somaPC = 0
+                flag = False
+                fim = False
+                main = False
+                if mao == 0:
+                    frase = ''
+                    print('Voce compra 3 cartas...\n')
+                    while mao < 3:
+                        val = random.choice(cartas)
+                        mixer.music.play()
+                        val = str(val)
+                        if 'K' in val:
+                            soma += 13
+                        elif 'Q' in val:
+                            soma +=12
+                        elif 'J' in val:
+                            soma+=11
+                        else:
+                            val = int(val)
+                            soma+=val
+                            mao = mao + 1
+                            val = str(val)
+                            val = " "+val
+                            frase += (val)
+                            print(f'{val}', end= ' ')
+                            sleep(1)
+                    sleep(2)        
+                    os.system('cls')
+                    print('A máquina compra 3 cartas...\n')     
+                    frase2 = ''   
+                    while maoPC<3:
+                        val = random.choice(cartas)
+                        mixer.music.play()
+                        val = str(val)
+                        if 'K' in val:
+                            somaPC += 13
+                        elif 'Q' in val:
+                            somaPC +=12
+                        elif 'J' in val:
+                            somaPC+=11
+                        else:
+                            val = int(val)
+                            somaPC+=val
+                            if maoPC == 2:
+                                frase2+=' *'
+                                maoPC = maoPC + 1
+                                sleep(1)
+                            else:
+                                maoPC = maoPC + 1
+                                val = str(val)
+                                val = " "+val
+                                frase2 += (val)
+                                sleep(1) 
+                    print(f'Mão PC: {frase2}')
+                    print(f'Sua Mão: {frase}  Soma: {soma}\n1 - Comprar\n2 - Ficar')                      
+            elif op < 1 or op>2:
+                print('Selecione uma opção válida\n')
+                sleep(2)
+            elif op == 2:
+                main = True
+                flag = False
     elif op > 3 or op < 1:
             os.system('cls')
             print('Selecione um opção válida\n')
